@@ -29,11 +29,15 @@ def process_results(news_list):
     news_results = []
     for news_item in news_list:
         id = news_item.get('id')
-        title = news_item.get('title')
+        name = news_item.get('name')
         description = news_item.get('description')
         url = news_item.get('url')
-        urlToImage = news_item.get('urlToImage')
-        publishedAt = news_item.get('publishedAt')
+        category = news_item.get('category')
+
+        news_source = News(id,name,description,url,category)
+        news_results.append(news_source)
+
+
 
 
     return news_results
