@@ -1,0 +1,6 @@
+{%macro displayNewsList(news_list)%}
+  {%for new in news_list%}
+    <li>{{news.name}}</li>
+  {%endfor%}
+
+{%endmacro%}
