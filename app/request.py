@@ -1,8 +1,8 @@
 from app import app
 import urllib.request,json
-from .models import news
+from .models import New, Article
 
-News = news.News
+New = news.New
 
 # getting api key
 api_key = app.config['NEWS_API_KEY']
@@ -41,3 +41,35 @@ def process_results(news_list):
 
 
     return news_results
+
+def get_articles_source(id):
+    get_articles_url = 'https://newsapi.org/v1/articles?source={}&apiKey={}'.format(id,api_key)
+
+    with urllib.request.urlopen(get_articles_url)as url:
+        get_articles_data = url.read()
+        get_articles_response = json.loads(get_articles_data)
+
+        articles_results = None
+
+        if get_articles_response['articles']:
+            articles_results_list = get_articles_response['articles']
+            articles_results = process_articles(articles_results_list)
+
+    return articles_results
+
+
+def process_articles(articles_list):
+    articles_results = []
+
+    for article_item in articles_list:
+        author = article_item.get('author')
+        title = article_item.get('title')
+        description = article_item.get('description')
+        url = article_item.get('url')
+        publishedAt = article_item.get('publishedAt')
+
+        if publishedAt:
+            article_object = Article(author,title,description,url,publishedAt)
+            articles_results.append(article_object)
+
+    return articles_results
