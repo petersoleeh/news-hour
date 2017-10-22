@@ -1,10 +1,13 @@
+{%extends 'base.html'%}
+{% import 'macros.html' as macro %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge"> {% if title%}
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% if title%}
   <title>{{title}}</title>
   {%else%}
   <title>Welcome To The Newsroom</title>
@@ -12,11 +15,11 @@
 </head>
 
 <body>
+
+
   <h3>Sources</h3>
   <ul>
-    {%for business_news in business%}
-      <li>{{business_news.name}}</li>
-    {%endfor%}
+      {{macro.displayNewsList(general)}}
   </ul>
 
 </body>
