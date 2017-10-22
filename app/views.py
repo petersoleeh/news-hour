@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-from .request import get_sources
+from .request import get_sources,get_articles_source
 
 # views
 
@@ -10,10 +10,9 @@ def index():
     '''
     view root page that returns the landing page and its data
     '''
-    business_news = get_sources('business')
-    print(business_news)
+    general = get_sources('general')
     title = 'Home - Welcome To The Newsroom '
-    return render_template('index.html', title=title,business=business_news)
+    return render_template('index.html', title=title,general=general)
 
 
 @app.route('/news/<news_id>')
