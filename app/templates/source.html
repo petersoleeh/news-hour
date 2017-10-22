@@ -1,0 +1,10 @@
+{%extends 'base.html' %}
+{%import 'macros.html' as macro%}
+
+<!-- content -->
+{%block content%}
+<ul>
+  {{macro.displayArticleList(article)}}
+</ul>
+
+{%endblock%}
