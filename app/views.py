@@ -15,10 +15,11 @@ def index():
     return render_template('index.html', title=title,general=general)
 
 
-@app.route('/news/<news_id>')
-def news(news_id):
+@app.route('/news/<id>')
+def news(id):
     '''
     news page function that returns the news details page and its data
     '''
-    title = 'Welcome To The Newsroom'
-    return render_template('news.html', title=title, id=news_id)
+    articles = get_articles_source(id)
+    title = f'{id}'
+    return render_template('news.html', title=title, article = articles)
