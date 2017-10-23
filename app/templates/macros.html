@@ -1,10 +1,21 @@
 {% macro displayNewsList(news_list) %}
   {% for source in news_list %}
   <div class="jumbotron col-xs-12 col-sm-4 col-md-2 col-lg-2 news-card text-center">
-  <a href="/source/{{source.id}}">
+  <a href="/news/{{source.id}}">
     <h3>{{ source.name }}</h3>
   </a>
 </div>
   {%endfor%}
 
 {%endmacro%}
+{% macro displayArticleList(articles_list) %} {% for article in articles_list %}
+<div class="jumbotron col-xs-12 col-sm-8 col-md-8 col-lg-2 article-card text-center">
+  <h4><a href="{{ article.url }}" class="article-title">{{ article.title }}</a></h4>
+  <small>Date:{{article.publishedAt}}</small>
+  <img src="{{ article.urlToImage }}" alt="{{ article.title }}" class="img-responsive article-image">
+  <p>
+    <span>{{ article.description |truncate(100)}}</span>
+    <b><br><a href="{{ article.url }}">More info...</a></b>
+  </p>
+</div>
+{% endfor %} {% endmacro %}
